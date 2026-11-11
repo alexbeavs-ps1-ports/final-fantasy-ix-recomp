@@ -1,0 +1,41 @@
+{
+  "$schema": "https://recomplauncher.com/schema/recomplauncher.json",
+  "format": 1,
+  "name": "Final Fantasy IX Recompiled",
+  "repo": "alexbeavs-ps1-ports/final-fantasy-ix-recomp",
+  "inputs": [
+    {
+      "id": "disc1",
+      "label": "Your Final Fantasy IX disc 1 image (USA, Rev 1, serial SLUS-01251): the .cue file with its .bin next to it, or a .chd, .iso or .img.",
+      "role": "disc",
+      "formats": [
+        { "type": "file", "extensions": ["cue", "chd", "iso", "img"] }
+      ]
+    }
+  ],
+  "start": {
+    "program": ["Final_Fantasy_IX_Recompiled.exe", "Final_Fantasy_IX_Recompiled"],
+    "args": ["--disc", "{input:disc1}"]
+  },
+  "saves": ["{install}/saves"],
+  "folders": {
+    "saves": [{ "path": "{install}/saves" }]
+  },
+  "settings": [
+    {
+      "id": "renderer",
+      "label": "Graphics",
+      "in": "args",
+      "help": "The graphics backend. Game's option uses the one set in game.toml (OpenGL). Try Vulkan if OpenGL gives you trouble.",
+      "choices": [
+        { "label": "Game's option", "args": [] },
+        { "label": "OpenGL", "args": ["--renderer", "opengl"] },
+        { "label": "Vulkan", "args": ["--renderer", "vulkan"] },
+        { "label": "Software", "args": ["--renderer", "software"] }
+      ]
+    }
+  ],
+  "actions": [
+    { "id": "saves", "label": "Saves", "help": "Your memory cards.", "open": "saves" }
+  ]
+}
