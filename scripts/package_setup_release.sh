@@ -35,6 +35,11 @@ EXTRA_PROJECT=()
 if [[ -f "${ROOT}/catalog_identity.json" ]]; then
   EXTRA_PROJECT+=(--project-file catalog_identity.json)
 fi
+# RecompLauncher reads this from the top of the zip, next to the executable,
+# to set the game up and start it. It must ship in every release.
+if [[ -f "${ROOT}/recomplauncher.json" ]]; then
+  EXTRA_PROJECT+=(--project-file recomplauncher.json)
+fi
 if [[ -f "${ROOT}/framework_pins.txt" ]]; then
   EXTRA_PROJECT+=(--project-file framework_pins.txt)
 fi
